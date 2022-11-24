@@ -1,0 +1,19 @@
+name: merge master
+run-name: merge master branch into ${{ github.event.inputs.target_branch }} by @${{ github.actor }}
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: 'target branch'
+        required: true
+jobs:
+  merge-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: everlytic/branch-merge@1.1.2
+        with:
+          github_token: ${{ github.token }}
+          source_ref: 'main'
+          target_branch: ${{ github.event.inputs.target_branch }}
+          commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
