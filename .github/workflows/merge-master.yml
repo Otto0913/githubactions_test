@@ -8,10 +8,10 @@ on:
         required: true
 jobs:
   merge-branch:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-      - uses: everlytic/branch-merge@1.1.2
+      - uses: everlytic/branch-merge@1.1.5
         with:
           github_token: ${{ secrets.PERSONAL221124 }}
           source_ref: 'main'
